@@ -273,7 +273,6 @@ export class CalendarComponent implements OnInit {
 		@Input() autoSelectCurrentDate:boolean = true;
     @Input()
     get currentDate():Date {
-	    	console.log(this.autoSelectCurrentDate);
         return this._currentDate;
     }
 
@@ -281,7 +280,6 @@ export class CalendarComponent implements OnInit {
         if (!val) {
             val = new Date();
         }
-	    	console.log(this.autoSelectCurrentDate);
 
         this._currentDate = val;
         this.calendarService.setCurrentDate(val, true);
