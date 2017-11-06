@@ -270,8 +270,10 @@ export enum Step {
     providers: [CalendarService]
 })
 export class CalendarComponent implements OnInit {
+		@Input() autoSelectCurrentDate:boolean = true;
     @Input()
     get currentDate():Date {
+	    	console.log(this.autoSelectCurrentDate);
         return this._currentDate;
     }
 
@@ -279,10 +281,13 @@ export class CalendarComponent implements OnInit {
         if (!val) {
             val = new Date();
         }
+	    	console.log(this.autoSelectCurrentDate);
 
         this._currentDate = val;
         this.calendarService.setCurrentDate(val, true);
-        this.onCurrentDateChanged.emit(this._currentDate);
+        if ( this.autoSelectCurrentDate ) {
+        	this.onCurrentDateChanged.emit(this._currentDate);
+        }
     }
 
     @Input() eventSource:IEvent[] = [];
